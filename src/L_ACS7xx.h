@@ -27,18 +27,19 @@ private:
   uint8_t _modelACS;
   uint8_t _bits;
   float _VCC = 5.0;
+  float _PCC;
   const float _sensitivity[11] = {
-      0.185, // ACS712 ELC-05  -> hsata 5A
-      0.100, // ACS712 ELC-20  -> hasta 20A
-      0.066, // ACS712 ELC-30  -> hasta 30A
-      0.040, // ACS758LCB-050B -> -50A a 50A
-      0.060, // ACS758LCB-050U -> hasta 50A
-      0.020, // ACS758LCB-100B -> -100A a 100A
-      0.040, // ACS758LCB-100U -> hasta 100A
-      0.013, // ACS758KCB-150B -> -150A a 150A
-      0.016, // ACS758KCB-150U -> hasta 150A
-      0.010, // ACS758ECB-200B -> -200A a 200A
-      0.020, // ACS758ECB-200U -> hasta 200A
+      0.185, // ACS712 ELC-05
+      0.100, // ACS712 ELC-20
+      0.066, // ACS712 ELC-30
+      0.040, // ACS758LCB-050B
+      0.060, // ACS758LCB-050U
+      0.020, // ACS758LCB-100B
+      0.040, // ACS758LCB-100U
+      0.013, // ACS758KCB-150B
+      0.016, // ACS758KCB-150U
+      0.010, // ACS758ECB-200B
+      0.020  // ACS758ECB-200U
   };
   const float _puntoCeroConsumo[11] = {
       0.5,  // ACS712-ELC05
@@ -51,9 +52,8 @@ private:
       0.5,  // ACS758KCB-150B
       0.12, // ACS758KCB-150U
       0.5,  // ACS758ECB-200B
-      0.12, // ACS758ECB-200U
+      0.12  // ACS758ECB-200U
   };
-  float _PCC;
 };
 
 #endif
