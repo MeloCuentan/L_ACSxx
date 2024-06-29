@@ -8,7 +8,7 @@ uint16_t valorRawPin;
 float voltiosADS;
 float consumo;
 
-ACS7xx sensor1(ACS712_ELC05);
+ACS7xx sensor1(ACS712_05);
 
 void setup() {
   Serial.begin(115200);
