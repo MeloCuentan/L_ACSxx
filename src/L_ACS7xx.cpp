@@ -1,10 +1,8 @@
-#include <L_ACS7xx.h>
+#include "L_ACS7xx.h"
 
 /**
- * @brief Construct a new ACS7xx::ACS7xx object
- * 
+ * @brief Seleccion del modelo
  * @param modelACS: Modelo del ACS
- * @param bits: Resolución en bits de la entrada analógica
  */
 ACS7xx::ACS7xx(uint8_t modelACS)
 {
@@ -12,18 +10,19 @@ ACS7xx::ACS7xx(uint8_t modelACS)
 }
 
 /**
- * @brief 
- * Iniciamos con el punto cero
+ * @brief Inicializar valores 
+ * @param VCC: Voltaje de funcionamiento del microcontrolador o máximo del ADC
+ * @param bits: Resolución de la lectura analógica
  */
 void ACS7xx::begin(float VCC, uint8_t bits)
 {
     _VCC = VCC;
-    _bits = pow(2, bits);
+    _bits = pow(2, (uint16_t)bits);
     _PCC = _puntoCeroConsumo[_modelACS] * _VCC;
 }
 
 /**
- * @brief Calcular el consumo del sensor
+ * @brief Calcular el consumo del sensor con voltios como parámetro
  * 
  * @param voltiosPin: Recibe el voltaje del pin
  * @return float: Devulelve el consumo medido por el sensor
@@ -38,14 +37,16 @@ float ACS7xx::consumoSensor(float voltiosPin)
 }
 
 /**
- * @brief Calcular el consumo del sensor
+ * @brief Calcular el consumo del sensor con valor como parámetro
  * 
  * @param valorPin: Recibe el valor del pin
+ * @param referenciaVoltios: Valor máximo en voltios donde se ha tomado esa medida (por defecto)
  * @return float: Devuelve el consumo medido por el sensor
  */
-float ACS7xx::consumoSensor(uint16_t valorPin)
+float ACS7xx::consumoSensor(uint16_t valorPin, float referenciaVoltios)
 {
-    float voltiosPin;
-    voltiosPin = (float)valorPin * _VCC / _bits;
-    return consumoSensor(voltiosPin);
+    float consumoMedido;
+    float voltiosPinTemp = (float)valorPin * referenciaVoltios / _bits;
+    consumoMedido = consumoSensor(voltiosPinTemp);
+    return consumoMedido;
 }
