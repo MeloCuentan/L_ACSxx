@@ -21,11 +21,11 @@ public:
   ACS7xx(uint8_t modelACS);
   void begin(float VCC, uint8_t bits = 10);
   float consumoSensor(float voltiosPin);
-  float consumoSensor(uint16_t valorPin);
+  float consumoSensor(uint16_t valorPin, float referenciaVoltios = 5.0);
 
 private:
   uint8_t _modelACS;
-  uint8_t _bits;
+  int16_t _bits;
   float _VCC = 5.0;
   float _PCC;
   const float _sensitivity[11] = {
