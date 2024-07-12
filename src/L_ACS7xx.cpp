@@ -43,10 +43,10 @@ float ACS7xx::consumoSensor(float voltiosPin)
  * @param referenciaVoltios: Valor máximo en voltios donde se ha tomado esa medida (por defecto)
  * @return float: Devuelve el consumo medido por el sensor
  */
-float ACS7xx::consumoSensor(uint16_t valorPin, float referenciaVoltios)
-{
-    float consumoMedido;
-    float voltiosPinTemp = (float)valorPin * referenciaVoltios / _bits;
-    consumoMedido = consumoSensor(voltiosPinTemp);
-    return consumoMedido;
+float ACS7xx::consumoSensor(uint16_t valorPin, float referenciaVoltios) {
+  uint16_t factor = pow(2, _bits);
+  float consumoMedido;
+  float voltiosPinTemp = (float)(valorPin * referenciaVoltios) / (float)factor * 2;
+  consumoMedido = consumoSensor(voltiosPinTemp);
+  return consumoMedido;
 }
