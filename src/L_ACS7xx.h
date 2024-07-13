@@ -25,7 +25,7 @@ public:
 
 private:
   uint8_t _modelACS;
-  int16_t _bits;
+  uint32_t _resolucion;
   float _VCC = 5.0;
   float _PCC;
   const float _sensitivity[11] = {
