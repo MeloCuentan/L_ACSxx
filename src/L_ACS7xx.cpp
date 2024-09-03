@@ -23,10 +23,12 @@ void ACS7xx::begin(float VCC, uint8_t bits) {
  * @brief Calcular el consumo del sensor con voltios como parámetro
  * 
  * @param voltiosPin: Recibe el voltaje del pin
+ * @param referenciaVoltios: Valor máximo en voltios donde se ha tomado esa medida (por defecto)
  * @return float: Devulelve el consumo medido por el sensor
  */
-float ACS7xx::consumoSensor(float voltiosPin) {
+float ACS7xx::consumoSensor(float voltiosPin, float referenciaVoltios) {
   float temporal;
+  _PCC = referenciaVoltios * _puntoCeroConsumo[_modelACS];
   temporal = (voltiosPin - _PCC) / _sensitivity[_modelACS];
   if (abs(temporal) < 0.1)
     temporal = 0.0;
