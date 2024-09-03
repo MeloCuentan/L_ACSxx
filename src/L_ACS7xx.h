@@ -20,7 +20,7 @@ class ACS7xx
 public:
   ACS7xx(uint8_t modelACS);
   void begin(float VCC, uint8_t bits = 10);
-  float consumoSensor(float voltiosPin);
+  float consumoSensor(float voltiosPin, float referenciaVoltios = 5.0);
   float consumoSensor(uint16_t valorPin, float referenciaVoltios = 5.0);
 
 private:
